@@ -1,0 +1,305 @@
+﻿{
+    "variations":  [
+                       {
+                           "question":  "A cyclist travels 240 meters in 12 seconds. Calculate the velocity of the cyclist.",
+                           "answer_key":  "20 m/s\nExplanation: Step 1: Identify given variables for the cyclist: distance d = 240.0 m, time t = 12.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 240.0 / 12.0 = 20 m/s.",
+                           "difficulty":  0.5
+                       },
+                       {
+                           "question":  "During a test run, a train navigates 450 meters over 15 seconds. What is the average velocity of the train?",
+                           "answer_key":  "30 m/s\nExplanation: Step 1: Identify given variables for the train: distance d = 450.0 m, time t = 15.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 450.0 / 15.0 = 30 m/s.",
+                           "difficulty":  0.41
+                       },
+                       {
+                           "question":  "Given that a runner travels across 180 meters in 9 seconds, determine the resulting velocity.",
+                           "answer_key":  "20 m/s\nExplanation: Step 1: Identify given variables for the runner: distance d = 180.0 m, time t = 9.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 180.0 / 9.0 = 20 m/s.",
+                           "difficulty":  0.5
+                       },
+                       {
+                           "question":  "In a performance evaluation, a delivery truck travels 300 meters within 15 seconds. Calculate its constant velocity.",
+                           "answer_key":  "20 m/s\nExplanation: Step 1: Identify given variables for the delivery truck: distance d = 300.0 m, time t = 15.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 300.0 / 15.0 = 20 m/s.",
+                           "difficulty":  0.5
+                       },
+                       {
+                           "question":  "According to recorded telemetry data, a boat travels 120 meters in 6 seconds. Find the velocity of the boat.",
+                           "answer_key":  "20 m/s\nExplanation: Step 1: Identify given variables for the boat: distance d = 120.0 m, time t = 6.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 120.0 / 6.0 = 20 m/s.",
+                           "difficulty":  0.41
+                       },
+                       {
+                           "question":  "An operational aircraft proceeds a measured distance of 600 meters during an elapsed interval of 20 seconds. Compute its velocity in meters per second.",
+                           "answer_key":  "30 m/s\nExplanation: Step 1: Identify given variables for the aircraft: distance d = 600.0 m, time t = 20.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 600.0 / 20.0 = 30 m/s.",
+                           "difficulty":  0.52
+                       },
+                       {
+                           "question":  "Operating under constant linear speed conditions, a athlete travels 100 meters in 5 seconds. Calculate the velocity.",
+                           "answer_key":  "20 m/s\nExplanation: Step 1: Identify given variables for the athlete: distance d = 100.0 m, time t = 5.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 100.0 / 5.0 = 20 m/s.",
+                           "difficulty":  0.5
+                       },
+                       {
+                           "question":  "A motorcycle covers 360 meters in 12 seconds. Calculate the velocity of the motorcycle.",
+                           "answer_key":  "30 m/s\nExplanation: Step 1: Identify given variables for the motorcycle: distance d = 360.0 m, time t = 12.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 360.0 / 12.0 = 30 m/s.",
+                           "difficulty":  0.5
+                       },
+                       {
+                           "question":  "During a test run, a bobsled covers 250 meters over 10 seconds. What is the average velocity of the bobsled?",
+                           "answer_key":  "25 m/s\nExplanation: Step 1: Identify given variables for the bobsled: distance d = 250.0 m, time t = 10.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 250.0 / 10.0 = 25 m/s.",
+                           "difficulty":  0.41
+                       },
+                       {
+                           "question":  "Given that a drone journeys across 150 meters in 10 seconds, determine the resulting velocity.",
+                           "answer_key":  "15 m/s\nExplanation: Step 1: Identify given variables for the drone: distance d = 150.0 m, time t = 10.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 150.0 / 10.0 = 15 m/s.",
+                           "difficulty":  0.5
+                       },
+                       {
+                           "question":  "In a performance evaluation, a submersible advances 200 meters within 8 seconds. Calculate its constant velocity.",
+                           "answer_key":  "25 m/s\nExplanation: Step 1: Identify given variables for the submersible: distance d = 200.0 m, time t = 8.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 200.0 / 8.0 = 25 m/s.",
+                           "difficulty":  0.5
+                       },
+                       {
+                           "question":  "According to recorded telemetry data, a tram car travels 280 meters in 14 seconds. Find the velocity of the tram car.",
+                           "answer_key":  "20 m/s\nExplanation: Step 1: Identify given variables for the tram car: distance d = 280.0 m, time t = 14.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 280.0 / 14.0 = 20 m/s.",
+                           "difficulty":  0.41
+                       },
+                       {
+                           "question":  "A express car navigates 520 meters in 22 seconds. Calculate the velocity of the express car.",
+                           "answer_key":  "23.64 m/s\nExplanation: Step 1: Identify given variables for the express car: distance d = 520.0 m, time t = 22.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 520.0 / 22.0 = 23.64 m/s.",
+                           "difficulty":  0.5
+                       },
+                       {
+                           "question":  "Operating under constant linear speed conditions, a skydiver travels 500 meters in 25 seconds. Calculate the velocity.",
+                           "answer_key":  "20 m/s\nExplanation: Step 1: Identify given variables for the skydiver: distance d = 500.0 m, time t = 25.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 500.0 / 25.0 = 20 m/s.",
+                           "difficulty":  0.5
+                       },
+                       {
+                           "question":  "A marathon runner travels 320 meters in 16 seconds. Calculate the velocity of the marathon runner.",
+                           "answer_key":  "20 m/s\nExplanation: Step 1: Identify given variables for the marathon runner: distance d = 320.0 m, time t = 16.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 320.0 / 16.0 = 20 m/s.",
+                           "difficulty":  0.5
+                       },
+                       {
+                           "question":  "During a test run, a cable car travels 160 meters over 8 seconds. What is the average velocity of the cable car?",
+                           "answer_key":  "20 m/s\nExplanation: Step 1: Identify given variables for the cable car: distance d = 160.0 m, time t = 8.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 160.0 / 8.0 = 20 m/s.",
+                           "difficulty":  0.41
+                       },
+                       {
+                           "question":  "Given that a hydroplane travels across 420 meters in 14 seconds, determine the resulting velocity.",
+                           "answer_key":  "30 m/s\nExplanation: Step 1: Identify given variables for the hydroplane: distance d = 420.0 m, time t = 14.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 420.0 / 14.0 = 30 m/s.",
+                           "difficulty":  0.5
+                       },
+                       {
+                           "question":  "In a performance evaluation, a solar car navigates 350 meters within 10 seconds. Calculate its constant velocity.",
+                           "answer_key":  "35 m/s\nExplanation: Step 1: Identify given variables for the solar car: distance d = 350.0 m, time t = 10.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 350.0 / 10.0 = 35 m/s.",
+                           "difficulty":  0.5
+                       },
+                       {
+                           "question":  "According to recorded telemetry data, a satellite travels 700 meters in 14 seconds. Find the velocity of the satellite.",
+                           "answer_key":  "50 m/s\nExplanation: Step 1: Identify given variables for the satellite: distance d = 700.0 m, time t = 14.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 700.0 / 14.0 = 50 m/s.",
+                           "difficulty":  0.41
+                       },
+                       {
+                           "question":  "A express projectile covers 660 meters in 20 seconds. Calculate the velocity of the express projectile.",
+                           "answer_key":  "33 m/s\nExplanation: Step 1: Identify given variables for the express projectile: distance d = 660.0 m, time t = 20.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 660.0 / 20.0 = 33 m/s.",
+                           "difficulty":  0.5
+                       },
+                       {
+                           "question":  "Operating under constant linear speed conditions, a spring-mass vehicle covers 150 meters in 5 seconds. Calculate the velocity.",
+                           "answer_key":  "30 m/s\nExplanation: Step 1: Identify given variables for the spring-mass vehicle: distance d = 150.0 m, time t = 5.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 150.0 / 5.0 = 30 m/s.",
+                           "difficulty":  0.51
+                       },
+                       {
+                           "question":  "A high-speed train journeys 900 meters in 30 seconds. Calculate the velocity of the high-speed train.",
+                           "answer_key":  "30 m/s\nExplanation: Step 1: Identify given variables for the high-speed train: distance d = 900.0 m, time t = 30.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 900.0 / 30.0 = 30 m/s.",
+                           "difficulty":  0.51
+                       },
+                       {
+                           "question":  "During a test run, a charged particle travels 80 meters over 4 seconds. What is the average velocity of the charged particle?",
+                           "answer_key":  "20 m/s\nExplanation: Step 1: Identify given variables for the charged particle: distance d = 80.0 m, time t = 4.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 80.0 / 4.0 = 20 m/s.",
+                           "difficulty":  0.41
+                       },
+                       {
+                           "question":  "Given that a velodrome cyclist advances across 330 meters in 11 seconds, determine the resulting velocity.",
+                           "answer_key":  "30 m/s\nExplanation: Step 1: Identify given variables for the velodrome cyclist: distance d = 330.0 m, time t = 11.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 330.0 / 11.0 = 30 m/s.",
+                           "difficulty":  0.5
+                       },
+                       {
+                           "question":  "In a performance evaluation, a banked automobile journeys 480 meters within 16 seconds. Calculate its constant velocity.",
+                           "answer_key":  "30 m/s\nExplanation: Step 1: Identify given variables for the banked automobile: distance d = 480.0 m, time t = 16.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 480.0 / 16.0 = 30 m/s.",
+                           "difficulty":  0.5
+                       },
+                       {
+                           "question":  "According to recorded telemetry data, a falling raindrop advances 90 meters in 6 seconds. Find the velocity of the falling raindrop.",
+                           "answer_key":  "15 m/s\nExplanation: Step 1: Identify given variables for the falling raindrop: distance d = 90.0 m, time t = 6.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 90.0 / 6.0 = 15 m/s.",
+                           "difficulty":  0.41
+                       },
+                       {
+                           "question":  "An operational circular motion particle travels a measured distance of 210 meters during an elapsed interval of 7 seconds. Compute its velocity in meters per second.",
+                           "answer_key":  "30 m/s\nExplanation: Step 1: Identify given variables for the circular motion particle: distance d = 210.0 m, time t = 7.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 210.0 / 7.0 = 30 m/s.",
+                           "difficulty":  0.52
+                       },
+                       {
+                           "question":  "Operating under constant linear speed conditions, a space rocket covers 1200 meters in 40 seconds. Calculate the velocity.",
+                           "answer_key":  "30 m/s\nExplanation: Step 1: Identify given variables for the space rocket: distance d = 1200.0 m, time t = 40.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 1200.0 / 40.0 = 30 m/s.",
+                           "difficulty":  0.51
+                       },
+                       {
+                           "question":  "A roller coaster cart travels 260 meters in 13 seconds. Calculate the velocity of the roller coaster cart.",
+                           "answer_key":  "20 m/s\nExplanation: Step 1: Identify given variables for the roller coaster cart: distance d = 260.0 m, time t = 13.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 260.0 / 13.0 = 20 m/s.",
+                           "difficulty":  0.51
+                       },
+                       {
+                           "question":  "During a test run, a marathon athlete travels 380 meters over 19 seconds. What is the average velocity of the marathon athlete?",
+                           "answer_key":  "20 m/s\nExplanation: Step 1: Identify given variables for the marathon athlete: distance d = 380.0 m, time t = 19.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 380.0 / 19.0 = 20 m/s.",
+                           "difficulty":  0.41
+                       },
+                       {
+                           "question":  "Given that a freefall skydiver advances across 650 meters in 13 seconds, determine the resulting velocity.",
+                           "answer_key":  "50 m/s\nExplanation: Step 1: Identify given variables for the freefall skydiver: distance d = 650.0 m, time t = 13.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 650.0 / 13.0 = 50 m/s.",
+                           "difficulty":  0.5
+                       },
+                       {
+                           "question":  "An operational express mountain cable car journeys a measured distance of 300 meters during an elapsed interval of 14 seconds. Compute its velocity in meters per second.",
+                           "answer_key":  "21.43 m/s\nExplanation: Step 1: Identify given variables for the express mountain cable car: distance d = 300.0 m, time t = 14.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 300.0 / 14.0 = 21.43 m/s.",
+                           "difficulty":  0.52
+                       },
+                       {
+                           "question":  "According to recorded telemetry data, a ice track bobsled journeys 270 meters in 9 seconds. Find the velocity of the ice track bobsled.",
+                           "answer_key":  "30 m/s\nExplanation: Step 1: Identify given variables for the ice track bobsled: distance d = 270.0 m, time t = 9.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 270.0 / 9.0 = 30 m/s.",
+                           "difficulty":  0.42
+                       },
+                       {
+                           "question":  "An operational recurve bow arrow moves a measured distance of 140 meters during an elapsed interval of 2 seconds. Compute its velocity in meters per second.",
+                           "answer_key":  "70 m/s\nExplanation: Step 1: Identify given variables for the recurve bow arrow: distance d = 140.0 m, time t = 2.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 140.0 / 2.0 = 70 m/s.",
+                           "difficulty":  0.52
+                       },
+                       {
+                           "question":  "Operating under constant linear speed conditions, a ferris wheel cabin covers 100 meters in 20 seconds. Calculate the velocity.",
+                           "answer_key":  "5 m/s\nExplanation: Step 1: Identify given variables for the ferris wheel cabin: distance d = 100.0 m, time t = 20.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 100.0 / 20.0 = 5 m/s.",
+                           "difficulty":  0.51
+                       },
+                       {
+                           "question":  "A ocean submersible travels 220 meters in 11 seconds. Calculate the velocity of the ocean submersible.",
+                           "answer_key":  "20 m/s\nExplanation: Step 1: Identify given variables for the ocean submersible: distance d = 220.0 m, time t = 11.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 220.0 / 11.0 = 20 m/s.",
+                           "difficulty":  0.5
+                       },
+                       {
+                           "question":  "During a test run, a warehouse crate navigates 75 meters over 5 seconds. What is the average velocity of the warehouse crate?",
+                           "answer_key":  "15 m/s\nExplanation: Step 1: Identify given variables for the warehouse crate: distance d = 75.0 m, time t = 5.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 75.0 / 5.0 = 15 m/s.",
+                           "difficulty":  0.41
+                       },
+                       {
+                           "question":  "Given that a drag strip motorcycle moves across 400 meters in 8 seconds, determine the resulting velocity.",
+                           "answer_key":  "50 m/s\nExplanation: Step 1: Identify given variables for the drag strip motorcycle: distance d = 400.0 m, time t = 8.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 400.0 / 8.0 = 50 m/s.",
+                           "difficulty":  0.5
+                       },
+                       {
+                           "question":  "In a performance evaluation, a space probe navigates 1500 meters within 50 seconds. Calculate its constant velocity.",
+                           "answer_key":  "30 m/s\nExplanation: Step 1: Identify given variables for the space probe: distance d = 1500.0 m, time t = 50.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 1500.0 / 50.0 = 30 m/s.",
+                           "difficulty":  0.5
+                       },
+                       {
+                           "question":  "According to recorded telemetry data, a outfield baseball advances 120 meters in 4 seconds. Find the velocity of the outfield baseball.",
+                           "answer_key":  "30 m/s\nExplanation: Step 1: Identify given variables for the outfield baseball: distance d = 120.0 m, time t = 4.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 120.0 / 4.0 = 30 m/s.",
+                           "difficulty":  0.41
+                       },
+                       {
+                           "question":  "A ice hockey puck navigates 160 meters in 4 seconds. Calculate the velocity of the ice hockey puck.",
+                           "answer_key":  "40 m/s\nExplanation: Step 1: Identify given variables for the ice hockey puck: distance d = 160.0 m, time t = 4.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 160.0 / 4.0 = 40 m/s.",
+                           "difficulty":  0.51
+                       },
+                       {
+                           "question":  "During a test run, a steep ramp bobsled advances 310 meters over 10 seconds. What is the average velocity of the steep ramp bobsled?",
+                           "answer_key":  "31 m/s\nExplanation: Step 1: Identify given variables for the steep ramp bobsled: distance d = 310.0 m, time t = 10.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 310.0 / 10.0 = 31 m/s.",
+                           "difficulty":  0.42
+                       },
+                       {
+                           "question":  "Given that a hovering drone travels across 130 meters in 10 seconds, determine the resulting velocity.",
+                           "answer_key":  "13 m/s\nExplanation: Step 1: Identify given variables for the hovering drone: distance d = 130.0 m, time t = 10.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 130.0 / 10.0 = 13 m/s.",
+                           "difficulty":  0.5
+                       },
+                       {
+                           "question":  "In a performance evaluation, a building elevator journeys 85 meters within 5 seconds. Calculate its constant velocity.",
+                           "answer_key":  "17 m/s\nExplanation: Step 1: Identify given variables for the building elevator: distance d = 85.0 m, time t = 5.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 85.0 / 5.0 = 17 m/s.",
+                           "difficulty":  0.5
+                       },
+                       {
+                           "question":  "According to recorded telemetry data, a catapult stone travels 350 meters in 7 seconds. Find the velocity of the catapult stone.",
+                           "answer_key":  "50 m/s\nExplanation: Step 1: Identify given variables for the catapult stone: distance d = 350.0 m, time t = 7.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 350.0 / 7.0 = 50 m/s.",
+                           "difficulty":  0.41
+                       },
+                       {
+                           "question":  "An operational ski jumper navigates a measured distance of 225 meters during an elapsed interval of 9 seconds. Compute its velocity in meters per second.",
+                           "answer_key":  "25 m/s\nExplanation: Step 1: Identify given variables for the ski jumper: distance d = 225.0 m, time t = 9.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 225.0 / 9.0 = 25 m/s.",
+                           "difficulty":  0.52
+                       },
+                       {
+                           "question":  "Operating under constant linear speed conditions, a lake hydroplane travels 490 meters in 14 seconds. Calculate the velocity.",
+                           "answer_key":  "35 m/s\nExplanation: Step 1: Identify given variables for the lake hydroplane: distance d = 490.0 m, time t = 14.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 490.0 / 14.0 = 35 m/s.",
+                           "difficulty":  0.51
+                       },
+                       {
+                           "question":  "A particle accelerator travels 110 meters in 2 seconds. Calculate the velocity of the particle accelerator.",
+                           "answer_key":  "55 m/s\nExplanation: Step 1: Identify given variables for the particle accelerator: distance d = 110.0 m, time t = 2.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 110.0 / 2.0 = 55 m/s.",
+                           "difficulty":  0.5
+                       },
+                       {
+                           "question":  "During a test run, a billiard ball journeys 45 meters over 3 seconds. What is the average velocity of the billiard ball?",
+                           "answer_key":  "15 m/s\nExplanation: Step 1: Identify given variables for the billiard ball: distance d = 45.0 m, time t = 3.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 45.0 / 3.0 = 15 m/s.",
+                           "difficulty":  0.41
+                       },
+                       {
+                           "question":  "Given that a fort cannonball advances across 420 meters in 12 seconds, determine the resulting velocity.",
+                           "answer_key":  "35 m/s\nExplanation: Step 1: Identify given variables for the fort cannonball: distance d = 420.0 m, time t = 12.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 420.0 / 12.0 = 35 m/s.",
+                           "difficulty":  0.5
+                       },
+                       {
+                           "question":  "In a performance evaluation, a pendulum clock bob navigates 36 meters within 2 seconds. Calculate its constant velocity.",
+                           "answer_key":  "18 m/s\nExplanation: Step 1: Identify given variables for the pendulum clock bob: distance d = 36.0 m, time t = 2.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 36.0 / 2.0 = 18 m/s.",
+                           "difficulty":  0.51
+                       },
+                       {
+                           "question":  "According to recorded telemetry data, a industrial conveyor advances 185 meters in 37 seconds. Find the velocity of the industrial conveyor.",
+                           "answer_key":  "5 m/s\nExplanation: Step 1: Identify given variables for the industrial conveyor: distance d = 185.0 m, time t = 37.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 185.0 / 37.0 = 5 m/s.",
+                           "difficulty":  0.41
+                       },
+                       {
+                           "question":  "An operational transit station tram journeys a measured distance of 290 meters during an elapsed interval of 10 seconds. Compute its velocity in meters per second.",
+                           "answer_key":  "29 m/s\nExplanation: Step 1: Identify given variables for the transit station tram: distance d = 290.0 m, time t = 10.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 290.0 / 10.0 = 29 m/s.",
+                           "difficulty":  0.52
+                       },
+                       {
+                           "question":  "Operating under constant linear speed conditions, a high-jump athlete moves 64 meters in 8 seconds. Calculate the velocity.",
+                           "answer_key":  "8 m/s\nExplanation: Step 1: Identify given variables for the high-jump athlete: distance d = 64.0 m, time t = 8.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 64.0 / 8.0 = 8 m/s.",
+                           "difficulty":  0.51
+                       },
+                       {
+                           "question":  "A rolling boulder travels 175 meters in 7 seconds. Calculate the velocity of the rolling boulder.",
+                           "answer_key":  "25 m/s\nExplanation: Step 1: Identify given variables for the rolling boulder: distance d = 175.0 m, time t = 7.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 175.0 / 7.0 = 25 m/s.",
+                           "difficulty":  0.5
+                       },
+                       {
+                           "question":  "During a test run, a supersonic jet moves 1600 meters over 40 seconds. What is the average velocity of the supersonic jet?",
+                           "answer_key":  "40 m/s\nExplanation: Step 1: Identify given variables for the supersonic jet: distance d = 1600.0 m, time t = 40.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 1600.0 / 40.0 = 40 m/s.",
+                           "difficulty":  0.41
+                       },
+                       {
+                           "question":  "Given that a maglev train travels across 1050 meters in 21 seconds, determine the resulting velocity.",
+                           "answer_key":  "50 m/s\nExplanation: Step 1: Identify given variables for the maglev train: distance d = 1050.0 m, time t = 21.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 1050.0 / 21.0 = 50 m/s.",
+                           "difficulty":  0.5
+                       },
+                       {
+                           "question":  "In a performance evaluation, a tacking sailboat covers 230 meters within 23 seconds. Calculate its constant velocity.",
+                           "answer_key":  "10 m/s\nExplanation: Step 1: Identify given variables for the tacking sailboat: distance d = 230.0 m, time t = 23.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 230.0 / 23.0 = 10 m/s.",
+                           "difficulty":  0.5
+                       },
+                       {
+                           "question":  "According to recorded telemetry data, a express maglev train navigates 1170 meters in 23 seconds. Find the velocity of the express maglev train.",
+                           "answer_key":  "50.87 m/s\nExplanation: Step 1: Identify given variables for the express maglev train: distance d = 1170.0 m, time t = 23.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 1170.0 / 23.0 = 50.87 m/s.",
+                           "difficulty":  0.42
+                       },
+                       {
+                           "question":  "An operational express tacking sailboat proceeds a measured distance of 350 meters during an elapsed interval of 25 seconds. Compute its velocity in meters per second.",
+                           "answer_key":  "14 m/s\nExplanation: Step 1: Identify given variables for the express tacking sailboat: distance d = 350.0 m, time t = 25.0 s. Step 2: Apply the velocity formula v = d / t. Step 3: Calculate velocity = 350.0 / 25.0 = 14 m/s.",
+                           "difficulty":  0.52
+                       }
+                   ],
+    "duplicate_rate":  0.0806
+}

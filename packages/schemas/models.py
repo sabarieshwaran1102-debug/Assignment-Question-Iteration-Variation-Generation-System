@@ -181,12 +181,21 @@ class GenerationMetrics(BaseModel):
     generated_count: int = Field(..., description="Total raw variations generated")
     accepted_count: int = Field(..., description="Variations passing evaluation")
     rejected_count: int = Field(..., description="Variations failing evaluation")
+    regeneration_count: int = Field(default=0, description="Total regeneration attempts made")
     duplicate_count: int = Field(..., description="Variations flagged as duplicate")
     duplicate_rate: float = Field(..., ge=0.0, le=1.0, description="Ratio of duplicates among generated")
     low_confidence_count: int = Field(..., description="Variations sent to review queue")
+    low_confidence_review_count: int = Field(default=0, description="Count of low-confidence items routed to review")
     objective_failure_count: int = Field(default=0, description="Variations failing learning objective validation")
     answer_failure_count: int = Field(default=0, description="Variations failing answer key validation")
     generation_time_seconds: float = Field(..., ge=0.0, description="Total pipeline execution time in seconds")
+    total_wall_clock_time: float = Field(default=0.0, description="Total wall-clock pipeline time in seconds")
+    llm_invocation_count: int = Field(default=0, description="Number of LLM API calls executed")
+    average_llm_latency: float = Field(default=0.0, description="Average LLM call latency in seconds")
+    objective_preservation_rate: float = Field(default=1.0, ge=0.0, le=1.0, description="Ratio of variations preserving objective")
+    answer_key_correctness_rate: float = Field(default=1.0, ge=0.0, le=1.0, description="Ratio of variations with verified answer keys")
+    difficulty_equivalence_rate: float = Field(default=1.0, ge=0.0, le=1.0, description="Ratio of variations matching baseline difficulty tolerance")
+    variation_strategy_distribution: Dict[str, int] = Field(default_factory=dict, description="Counts of applied variation strategies")
 
 
 class DomainInfo(BaseModel):

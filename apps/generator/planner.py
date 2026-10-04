@@ -62,7 +62,23 @@ class DefaultVariationPlanner(VariationPlanner):
             index = start_index + offset
             strategy = STRATEGIES[index % len(STRATEGIES)]
             scen_tuple = PHYSICS_KINEMATICS_SCENARIOS[index % len(PHYSICS_KINEMATICS_SCENARIOS)]
-            scenario_name, dist_val, time_val = scen_tuple
+            base_scen, base_dist, base_time = scen_tuple
+
+            extra_entities = [
+                "peloton rider", "bullet train", "sprint athlete", "freight truck", "speed boat",
+                "cargo plane", "track athlete", "superbike", "competition bobsled", "quadcopter drone",
+                "bathyscaphe", "electric streetcar", "sports car", "BASE jumper", "track runner",
+                "funicular railway", "racing hydroplane", "solar vehicle", "orbital satellite", "artillery shell"
+            ]
+            if index >= len(PHYSICS_KINEMATICS_SCENARIOS):
+                dist_val = round(base_dist + (index * 17.5), 1)
+                time_val = round(base_time + (index % 7) + 1.0, 1)
+                extra_idx = (index - len(PHYSICS_KINEMATICS_SCENARIOS)) % len(extra_entities)
+                scenario_name = extra_entities[extra_idx]
+            else:
+                dist_val = base_dist
+                time_val = base_time
+                scenario_name = base_scen
 
             # Extract formula from analysis
             formula = analysis.formulas[0] if analysis.formulas else "v = d / t"

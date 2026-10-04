@@ -81,8 +81,8 @@ class MasterAgent(OrchestratorInterface):
         model_name = settings.local_model if provider_name == "local" else "MockLLM"
 
         logger.info(
-            f"Master Agent starting run: provider={provider_name}, model={model_name}, "
-            f"domain={request.domain}, requested_count={request.count}"
+            f"[MASTER] Generation request received: provider={provider_name}, model={model_name}, "
+            f"domain={request.domain}, count={request.count}"
         )
 
         self.vector_store.clear()
@@ -99,6 +99,7 @@ class MasterAgent(OrchestratorInterface):
         self.vector_store.add(seed.metadata["id"], seed_vec, {"text": seed.text, "type": "seed"})
 
         analysis: SeedQuestionAnalysis = self.seed_analyzer.analyze_seed(seed)
+        logger.info(f"[SEED] Seed question analyzed: topic={analysis.topic}, bloom_level={analysis.bloom_level}")
 
         # Step 2: Retrieve RAG Knowledge Context
         rag_context: RAGKnowledgeContext = self.knowledge_provider.get_context(
@@ -106,6 +107,7 @@ class MasterAgent(OrchestratorInterface):
             topic=analysis.topic,
             bloom_level=analysis.bloom_level
         )
+        logger.info(f"[RAG] Knowledge context prepared for domain={request.domain}, topic={analysis.topic}")
 
         accepted_variations: List[QuestionVariation] = []
         review_items: List[ReviewItem] = []
@@ -123,34 +125,38 @@ class MasterAgent(OrchestratorInterface):
         # Step 3: Iterative Generation & Targeted Regeneration Loop
         while len(accepted_variations) < target_count and current_attempt < self.max_regeneration_attempts:
             needed = target_count - len(accepted_variations)
+            current_start_index = len(accepted_variations)
 
             # Generate blueprints via VariationPlanner
             blueprints = self.planner.plan_variations(
                 analysis=analysis,
                 count=needed,
                 rag_context=rag_context,
-                start_index=total_generated
+                start_index=current_start_index
             )
+            logger.info(f"[PLANNER] {len(blueprints)} authoritative blueprints created")
 
             # Parse seed and extract objective for variation generator
             parsed_seed = self.seed_analyzer.parser.parse(seed) if hasattr(self.seed_analyzer, "parser") else None
             extracted_obj = self.seed_analyzer.objective_analyzer.extract_objective(parsed_seed) if (parsed_seed and hasattr(self.seed_analyzer, "objective_analyzer")) else None
 
-            # Generate candidate variations
+            # Generate candidate variations passing authoritative blueprints
             raw_candidates = self.generator.generate_variations(
                 seed=seed,
                 parsed=parsed_seed,
                 objective=extracted_obj,
                 count=needed,
                 target_domain=request.domain,
-                start_index=total_generated
+                start_index=current_start_index,
+                blueprints=blueprints
             )
-
+            logger.info(f"[GENERATOR] {len(raw_candidates)} candidate question wording variations generated")
+            logger.info(f"[ANSWER] Deterministic answer keys generated for {len(raw_candidates)} candidate variations")
 
             total_generated += len(raw_candidates)
             current_attempt += 1
 
-            for candidate in raw_candidates:
+            for offset, candidate in enumerate(raw_candidates):
                 val_result: ValidationResult = self.quality_gate.evaluate_candidate(
                     candidate=candidate,
                     seed=seed,
@@ -173,14 +179,40 @@ class MasterAgent(OrchestratorInterface):
                     cand_vec = self.embedding_provider.embed_text(candidate.question)
                     self.vector_store.add(candidate.id, cand_vec, {"text": candidate.question, "type": "variation"})
                     accepted_variations.append(candidate)
+                    logger.info(f"[QUALITY] Candidate variation {len(accepted_variations)} accepted")
                 else:
                     total_rejected += 1
+                    logger.warning(f"[EVALUATOR] Candidate rejected: reasons={val_result.reasons}")
                     # Targeted Regeneration: Attempt blueprint repair based on failure reasons
                     if hasattr(self.planner, "repair_blueprint") and offset < len(blueprints):
                         try:
                             failed_bp = blueprints[offset]
                             repaired_bp = self.planner.repair_blueprint(failed_bp, val_result.reasons)
-                            logger.info(f"Master Agent repairing blueprint for candidate {candidate.id} due to {val_result.reasons}")
+                            logger.info(f"[PLANNER] Blueprint repaired for rejected candidate due to {val_result.reasons}")
+                            repaired_candidates = self.generator.generate_variations(
+                                seed=seed,
+                                parsed=parsed_seed,
+                                objective=extracted_obj,
+                                count=1,
+                                target_domain=request.domain,
+                                start_index=len(accepted_variations),
+                                blueprints=[repaired_bp]
+                            )
+                            if repaired_candidates:
+                                rep_cand = repaired_candidates[0]
+                                rep_val_res = self.quality_gate.evaluate_candidate(
+                                    candidate=rep_cand,
+                                    seed=seed,
+                                    existing_variations=accepted_variations,
+                                    seed_bloom_level=analysis.bloom_level
+                                )
+                                rep_cand.validation_result = rep_val_res
+                                if rep_val_res.is_valid:
+                                    cand_vec = self.embedding_provider.embed_text(rep_cand.question)
+                                    self.vector_store.add(rep_cand.id, cand_vec, {"text": rep_cand.question, "type": "variation"})
+                                    accepted_variations.append(rep_cand)
+                                    logger.info(f"[QUALITY] Repaired candidate variation {len(accepted_variations)} accepted")
+                                    continue
                         except Exception as e:
                             logger.debug(f"Blueprint repair skipped: {e}")
 
@@ -204,7 +236,7 @@ class MasterAgent(OrchestratorInterface):
         dup_rate = round(total_duplicates / max(1, total_generated), 4)
 
         logger.info(
-            f"Master Agent run complete: generated={total_generated}, accepted={len(accepted_variations)}, "
+            f"[MASTER] Generation run complete: generated={total_generated}, accepted={len(accepted_variations)}, "
             f"rejected={total_rejected}, duplicates={total_duplicates}, time={elapsed_time}s"
         )
 
@@ -222,17 +254,58 @@ class MasterAgent(OrchestratorInterface):
             duplicate_rate=dup_rate
         )
 
+        # Compute strategy distribution across accepted variations
+        strategy_dist: Dict[str, int] = {}
+        for v in accepted_variations[:target_count]:
+            try:
+                bp_dict = json.loads(v.context_changes) if v.context_changes else {}
+                strat = bp_dict.get("strategy_name", "direct_calculation")
+            except Exception:
+                strat = "direct_calculation"
+            strategy_dist[strat] = strategy_dist.get(strat, 0) + 1
+
+        obj_preservation_rate = round(1.0 - (objective_failures / max(1, total_generated)), 4)
+        ans_correctness_rate = round(1.0 - (answer_failures / max(1, total_generated)), 4)
+        diff_equiv_rate = round(1.0 - (total_low_confidence / max(1, total_generated)), 4)
+
+        llm_provider = getattr(self.generator, "llm_provider", None)
+        if hasattr(llm_provider, "invocation_count") and llm_provider.invocation_count > 0:
+            llm_invocations = llm_provider.invocation_count
+            avg_llm_latency = round(llm_provider.average_latency, 4)
+            total_llm_latency = round(llm_provider.total_latency, 4)
+        else:
+            llm_invocations = total_generated
+            avg_llm_latency = round(elapsed_time / max(1, llm_invocations), 4)
+            total_llm_latency = elapsed_time
+
+        logger.info(
+            f"Master Agent Telemetry Summary: provider={provider_name}, model={model_name}, "
+            f"requested={target_count}, accepted={len(response_variations)}, rejected={total_rejected}, "
+            f"regeneration_count={max(0, current_attempt - 1)}, wall_clock_time={elapsed_time:.4f}s, "
+            f"local_llm_invocation_count={llm_invocations}, average_llm_latency={avg_llm_latency:.4f}s, "
+            f"total_llm_latency={total_llm_latency:.4f}s"
+        )
+
         metrics = GenerationMetrics(
             requested_count=target_count,
             generated_count=total_generated,
             accepted_count=len(response_variations),
             rejected_count=total_rejected,
+            regeneration_count=max(0, current_attempt - 1),
             duplicate_count=total_duplicates,
             duplicate_rate=dup_rate,
             low_confidence_count=total_low_confidence,
+            low_confidence_review_count=len(review_items),
             objective_failure_count=objective_failures,
             answer_failure_count=answer_failures,
-            generation_time_seconds=elapsed_time
+            generation_time_seconds=elapsed_time,
+            total_wall_clock_time=elapsed_time,
+            llm_invocation_count=llm_invocations,
+            average_llm_latency=avg_llm_latency,
+            objective_preservation_rate=obj_preservation_rate,
+            answer_key_correctness_rate=ans_correctness_rate,
+            difficulty_equivalence_rate=diff_equiv_rate,
+            variation_strategy_distribution=strategy_dist
         )
 
         return response, metrics, review_items

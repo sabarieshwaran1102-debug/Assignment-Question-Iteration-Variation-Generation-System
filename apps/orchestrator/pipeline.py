@@ -137,7 +137,7 @@ class GenerationOrchestrator(OrchestratorInterface):
                 if dup_res.is_duplicate:
                     total_duplicates += 1
 
-                if val_result.is_valid:
+                if val_result.is_valid and not dup_res.is_duplicate:
                     self.vector_store.add(candidate.id, cand_vec, {"text": candidate.question, "type": "variation"})
                     accepted_variations.append(candidate)
                 else:
