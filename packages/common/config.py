@@ -9,9 +9,9 @@ from pydantic import BaseModel
 
 class Settings(BaseModel):
     """Application configuration settings."""
-    llm_provider: str = os.getenv("LLM_PROVIDER", "mock")
-    local_model: str = os.getenv("LOCAL_MODEL", "qwen3:4b")
-    local_base_url: str = os.getenv("LOCAL_BASE_URL", "http://localhost:11434")
+    llm_provider: str = os.getenv("AMIGO_LLM_PROVIDER") or os.getenv("LLM_PROVIDER", "mock")
+    local_model: str = os.getenv("AMIGO_LOCAL_MODEL") or os.getenv("LOCAL_MODEL", "qwen3:4b")
+    local_base_url: str = os.getenv("AMIGO_LOCAL_BASE_URL") or os.getenv("LOCAL_BASE_URL", "http://localhost:11434")
     log_level: str = os.getenv("LOG_LEVEL", "INFO")
     
     # Quality thresholds

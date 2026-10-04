@@ -18,6 +18,26 @@ class LLMProvider(ABC):
         """Generate unstructured text from a prompt."""
         pass
 
+    def generate_text_batch(
+        self,
+        prompts: List[str],
+        system_prompt: Optional[str] = None,
+        **kwargs: Any
+    ) -> List[str]:
+        """Generate unstructured text for a batch of prompts.
+
+        Providers can override this method to provide optimized batch inference.
+        By default, it falls back to sequential calls to generate_text().
+        """
+        return [
+            self.generate_text(
+                prompt=prompt,
+                system_prompt=system_prompt,
+                **kwargs
+            )
+            for prompt in prompts
+        ]
+
     @abstractmethod
     def generate_structured(self, prompt: str, schema: Type[T], system_prompt: Optional[str] = None, **kwargs: Any) -> T:
         """Generate structured Pydantic object from a prompt."""

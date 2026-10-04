@@ -187,3 +187,158 @@ def test_bulk_export_csv_and_json(phase3_master_agent, tmp_path):
     with open(json_file, "r", encoding="utf-8") as f:
         data = json.load(f)
         assert len(data) == 3
+
+
+def test_velocity_seed_regression_authoritative_blueprint_and_answer_key_matching(phase3_master_agent):
+    """
+    Regression test for Phase 3.1:
+    Verifies that a velocity seed question ("Calculate velocity when distance is 100m and time is 5 seconds"):
+    1. Generates velocity calculation questions (v = d / t) without introducing unrelated physics topics.
+    2. Has exact numerical alignment between the distance and time in the question text and the calculated answer key.
+    3. Maintains authoritative blueprint ownership from VariationPlanner.
+    """
+    import re
+
+    req = GenerationRequest(
+        seed_question="Calculate the velocity of a vehicle moving 100m in 5 seconds.",
+        domain="Physics",
+        count=10
+    )
+
+    resp, metrics, reviews = phase3_master_agent.orchestrate_generation(req)
+
+    assert len(resp.variations) == 10
+
+    unrelated_keywords = ["inclined plane", "orbit", "cyclotron", "mass sliding", "friction coefficient"]
+
+    for var in resp.variations:
+        q_text = var.question
+        ans_key = var.answer_key
+
+        # 1. Verify no unrelated physics domain contamination
+        for kw in unrelated_keywords:
+            assert kw not in q_text.lower(), f"Unrelated physics topic '{kw}' found in generated question: '{q_text}'"
+
+        # 2. Extract distance and time numbers from question text
+        numbers = [float(n) for n in re.findall(r"\b\d+(?:\.\d+)?\b", q_text)]
+        assert len(numbers) >= 2, f"Question text does not contain distance and time parameters: '{q_text}'"
+
+        dist_val = numbers[0]
+        time_val = numbers[1]
+        expected_v = dist_val / time_val
+
+        # 3. Verify answer key matches expected velocity
+        if expected_v.is_integer():
+            expected_str = f"{int(expected_v)} m/s"
+        else:
+            expected_str = f"{expected_v:.2f} m/s"
+
+        assert expected_str in ans_key or f"{expected_v:.1f} m/s" in ans_key, (
+            f"Answer key '{ans_key}' does not match expected calculated velocity '{expected_str}' "
+            f"for question parameters distance={dist_val}, time={time_val}"
+        )
+
+
+def test_sixty_variations_diversity_difficulty_and_telemetry(phase3_master_agent):
+    """
+    Phase 3.2 Test:
+    Verifies that generating 60 variations:
+    1. Produces 60 distinct variations across multiple variation strategies (not 5 repeating templates).
+    2. Uses real difficulty analysis rather than an artificial cyclic difficulty sequence (0.4, 0.45, 0.5, 0.55, 0.6).
+    3. Populates all Phase 3.2 benchmark instrumentation telemetry in GenerationMetrics.
+    """
+    req = GenerationRequest(
+        seed_question="Calculate the velocity of a vehicle moving 100m in 5 seconds.",
+        domain="Physics",
+        count=60
+    )
+
+    resp, metrics, reviews = phase3_master_agent.orchestrate_generation(req)
+
+    # 1. Verify 60 accepted variations
+    assert len(resp.variations) == 60
+    assert metrics.requested_count == 60
+    assert metrics.accepted_count == 60
+
+    # 2. Verify Telemetry Instrumentation
+    assert metrics.total_wall_clock_time >= 0.0
+    assert metrics.objective_preservation_rate >= 0.90
+    assert metrics.answer_key_correctness_rate >= 0.90
+    assert metrics.difficulty_equivalence_rate >= 0.80
+    assert isinstance(metrics.variation_strategy_distribution, dict)
+    assert len(metrics.variation_strategy_distribution) >= 3
+
+    # 3. Verify high structural diversity (not 5 repeated templates)
+    unique_questions = set(v.question for v in resp.variations)
+    assert len(unique_questions) >= 55, f"Expected at least 55 unique questions out of 60, got {len(unique_questions)}"
+
+    # 4. Verify difficulty values come from analyzer and do not repeat in a 5-item artificial cycle (0.4, 0.45, 0.5, 0.55, 0.6)
+    diffs = [round(v.difficulty, 3) for v in resp.variations]
+    cyclic_pattern = [0.4, 0.45, 0.5, 0.55, 0.6]
+    first_five = diffs[:5]
+    next_five = diffs[5:10]
+    assert not (first_five == cyclic_pattern and next_five == cyclic_pattern), (
+        "Difficulty values still match the artificial repeating cycle (0.4, 0.45, 0.5, 0.55, 0.6)"
+    )
+
+
+def test_variation_41_42_regression_rejection_of_hallucinated_concepts():
+    """
+    Regression Test for Phase 3.2.1:
+    Verifies that hallucinated or inconsistent physics concepts (e.g. Mach number, shockwave angle,
+    magnetic drive force, ballistic pendulum) generated for a v = d / t velocity blueprint are strictly
+    rejected by DefaultBlueprintQuestionConsistencyValidator and SpecializedQualityGate.
+    """
+    from apps.evaluator.blueprint_validator import DefaultBlueprintQuestionConsistencyValidator
+    from packages.schemas.models import QuestionVariation, VariationBlueprint
+
+    validator = DefaultBlueprintQuestionConsistencyValidator()
+
+    # Blueprint for simple v = d / t kinematics
+    bp = VariationBlueprint(
+        domain="Physics",
+        topic="Kinematics",
+        target_variable="velocity",
+        formula="v = d / t",
+        known_variables={"distance": 1600.0, "time": 40.0},
+        scenario="supersonic jet flying a test route",
+        strategy_name="direct_calculation",
+        learning_objective="Calculate velocity using v = d / t"
+    )
+
+    # Candidate 41 representation with hallucinated Mach number / shockwave angle
+    bad_cand_41 = QuestionVariation(
+        id="var_41",
+        seed_question_id="seed_1",
+        question="For supersonic jet breaking the sound barrier where mach number = 1600.00 and secondary parameter = 40.00, calculate the flight speed and shockwave angle.",
+        answer_key="40.00 m/s\nExplanation: Step 1: Given distance = 1600.0 m, time = 40.0 s. Step 2: v = d / t = 40.00 m/s.",
+        difficulty=0.5,
+        domain="Physics",
+        learning_objective="Calculate velocity using v = d / t",
+        context_changes=bp.model_dump_json(),
+        metadata={"blueprint": bp}
+    )
+
+    is_valid_41, reasons_41 = validator.validate_blueprint_consistency(bad_cand_41, blueprint=bp)
+    assert is_valid_41 is False
+    assert any("mach number" in r.lower() or "shockwave angle" in r.lower() or "inconsistent" in r.lower() for r in reasons_41)
+
+    # Candidate 42 representation with hallucinated magnetic drive force / acceleration
+    bad_cand_42 = QuestionVariation(
+        id="var_42",
+        seed_question_id="seed_1",
+        question="For magnetic levitation train accelerating smoothly where magnetic drive force = 1050.00 and time = 21.00, calculate acceleration and peak velocity.",
+        answer_key="50.00 m/s\nExplanation: Step 1: Given distance = 1050.0 m, time = 21.0 s. Step 2: v = d / t = 50.00 m/s.",
+        difficulty=0.5,
+        domain="Physics",
+        learning_objective="Calculate velocity using v = d / t",
+        context_changes=bp.model_dump_json(),
+        metadata={"blueprint": bp}
+    )
+
+    is_valid_42, reasons_42 = validator.validate_blueprint_consistency(bad_cand_42, blueprint=bp)
+    assert is_valid_42 is False
+    assert any("magnetic drive" in r.lower() or "acceleration" in r.lower() or "inconsistent" in r.lower() for r in reasons_42)
+
+
+

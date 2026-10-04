@@ -46,8 +46,11 @@ class QualityEvaluator(ABC):
         pass
 
 
+from apps.evaluator.blueprint_validator import DefaultBlueprintQuestionConsistencyValidator
+
+
 class SpecializedQualityGate(QualityEvaluator):
-    """Master Quality Gate coordinating specialized objective, bloom, difficulty, answer, and duplicate evaluators."""
+    """Master Quality Gate coordinating specialized objective, bloom, difficulty, answer, duplicate, and blueprint consistency evaluators."""
 
     def __init__(
         self,
@@ -56,7 +59,8 @@ class SpecializedQualityGate(QualityEvaluator):
         difficulty_analyzer: DifficultyAnalyzer,
         equivalence_validator: DifficultyEquivalenceValidator,
         duplicate_detector: DuplicateDetector,
-        bloom_evaluator: Optional[BloomEvaluator] = None
+        bloom_evaluator: Optional[BloomEvaluator] = None,
+        blueprint_validator: Optional[Any] = None
     ):
         self.objective_validator = objective_validator
         self.answer_validator = answer_validator
@@ -64,6 +68,7 @@ class SpecializedQualityGate(QualityEvaluator):
         self.equivalence_validator = equivalence_validator
         self.duplicate_detector = duplicate_detector
         self.bloom_evaluator = bloom_evaluator or DefaultBloomEvaluator()
+        self.blueprint_validator = blueprint_validator or DefaultBlueprintQuestionConsistencyValidator()
 
     def evaluate_candidate(
         self,
@@ -100,7 +105,12 @@ class SpecializedQualityGate(QualityEvaluator):
         if not ans_valid:
             reasons.append("Answer key validation failure: answer is incomplete or mathematically inconsistent.")
 
-        # 4. Difficulty Evaluation
+        # 4. Blueprint & Question Consistency Validation
+        bp_valid, bp_reasons = self.blueprint_validator.validate_blueprint_consistency(candidate)
+        if not bp_valid:
+            reasons.extend(bp_reasons)
+
+        # 5. Difficulty Evaluation
         cand_diff_score = self.difficulty_analyzer.analyze_difficulty(
             question_text=candidate.question,
             domain=seed.domain
@@ -119,7 +129,7 @@ class SpecializedQualityGate(QualityEvaluator):
                 f"exceeds tolerance relative to seed ({seed_diff_score.score:.2f})."
             )
 
-        # 5. Duplicate Check
+        # 6. Duplicate Check
         existing_texts = [v.question for v in existing_variations]
         dup_res = self.duplicate_detector.check_duplicate(
             candidate_text=candidate.question,
@@ -129,7 +139,7 @@ class SpecializedQualityGate(QualityEvaluator):
         if dup_res.is_duplicate:
             reasons.append(f"Near-duplicate candidate: similarity score ({dup_res.similarity_score:.4f}) exceeds threshold.")
 
-        is_valid = obj_valid and ans_valid and diff_equiv and not dup_res.is_duplicate and bloom_res.passed
+        is_valid = obj_valid and ans_valid and bp_valid and diff_equiv and not dup_res.is_duplicate and bloom_res.passed
 
         return ValidationResult(
             is_valid=is_valid,

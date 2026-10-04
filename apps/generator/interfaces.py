@@ -58,10 +58,12 @@ class VariationGenerator(ABC):
         objective: LearningObjective,
         count: int,
         target_domain: Optional[str] = None,
-        start_index: int = 0
+        start_index: int = 0,
+        blueprints: Optional[List[Any]] = None
     ) -> List[QuestionVariation]:
         """Generate N question variations preserving learning objective."""
         pass
+
 
 
 class AnswerKeyGenerator(ABC):
