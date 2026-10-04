@@ -1,0 +1,110 @@
+{
+  "provider": "mock",
+  "model_name": "MockLLM",
+  "total_seeds": 5,
+  "total_requested": 50,
+  "total_generated": 68,
+  "total_accepted": 46,
+  "total_rejected": 22,
+  "total_duplicates": 22,
+  "total_objective_failures": 0,
+  "total_answer_failures": 0,
+  "objective_preservation_rate": 1.0,
+  "answer_key_validity_rate": 1.0,
+  "duplicate_rate": 0.3235,
+  "average_difficulty_difference": 0.0587,
+  "valid_variation_rate": 0.6765,
+  "total_generation_time_seconds": 0.26,
+  "seed_details": [
+    {
+      "id": "golden_phys_01",
+      "domain": "Physics",
+      "seed_question": "Calculate the velocity of a vehicle moving 100 meters in 5 seconds.",
+      "metrics": {
+        "requested_count": 10,
+        "generated_count": 10,
+        "accepted_count": 10,
+        "rejected_count": 0,
+        "duplicate_count": 0,
+        "duplicate_rate": 0.0,
+        "low_confidence_count": 0,
+        "objective_failure_count": 0,
+        "answer_failure_count": 0,
+        "generation_time_seconds": 0.047
+      },
+      "valid_variation_rate": 1.0
+    },
+    {
+      "id": "golden_cs_01",
+      "domain": "Computer Science",
+      "seed_question": "Analyze the asymptotic worst-case time complexity of quicksort with naive pivot selection.",
+      "metrics": {
+        "requested_count": 10,
+        "generated_count": 28,
+        "accepted_count": 6,
+        "rejected_count": 22,
+        "duplicate_count": 22,
+        "duplicate_rate": 0.7857,
+        "low_confidence_count": 0,
+        "objective_failure_count": 0,
+        "answer_failure_count": 0,
+        "generation_time_seconds": 0.124
+      },
+      "valid_variation_rate": 0.2143
+    },
+    {
+      "id": "golden_math_01",
+      "domain": "Mathematics",
+      "seed_question": "Compute the eigenvalues of a 2x2 matrix with diagonal elements 4 and 6.",
+      "metrics": {
+        "requested_count": 10,
+        "generated_count": 10,
+        "accepted_count": 10,
+        "rejected_count": 0,
+        "duplicate_count": 0,
+        "duplicate_rate": 0.0,
+        "low_confidence_count": 0,
+        "objective_failure_count": 0,
+        "answer_failure_count": 0,
+        "generation_time_seconds": 0.031
+      },
+      "valid_variation_rate": 1.0
+    },
+    {
+      "id": "golden_ee_01",
+      "domain": "Electrical Engineering",
+      "seed_question": "Calculate the resonant frequency of a series RLC circuit with L = 10 mH and C = 100 uF.",
+      "metrics": {
+        "requested_count": 10,
+        "generated_count": 10,
+        "accepted_count": 10,
+        "rejected_count": 0,
+        "duplicate_count": 0,
+        "duplicate_rate": 0.0,
+        "low_confidence_count": 0,
+        "objective_failure_count": 0,
+        "answer_failure_count": 0,
+        "generation_time_seconds": 0.033
+      },
+      "valid_variation_rate": 1.0
+    },
+    {
+      "id": "golden_chem_01",
+      "domain": "Chemistry",
+      "seed_question": "Calculate the number of moles of ideal gas occupying 22.4 liters at STP conditions.",
+      "metrics": {
+        "requested_count": 10,
+        "generated_count": 10,
+        "accepted_count": 10,
+        "rejected_count": 0,
+        "duplicate_count": 0,
+        "duplicate_rate": 0.0,
+        "low_confidence_count": 0,
+        "objective_failure_count": 0,
+        "answer_failure_count": 0,
+        "generation_time_seconds": 0.03
+      },
+      "valid_variation_rate": 1.0
+    }
+  ]
+}

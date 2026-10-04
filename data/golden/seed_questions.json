@@ -1,0 +1,67 @@
+[
+  {
+    "id": "golden_phys_01",
+    "seed_question": "Calculate the velocity of a vehicle moving 100 meters in 5 seconds.",
+    "domain": "Physics",
+    "topic": "Kinematics & Linear Motion",
+    "learning_objective": "Apply linear kinematics relationships to compute velocity from distance and time parameters.",
+    "difficulty_expectation": 0.5,
+    "acceptable_variation_characteristics": {
+      "context_shifts": ["cyclist", "train", "drone", "mass on track"],
+      "parameter_ranges": {"distance_meters": [10, 1000], "time_seconds": [2, 100]},
+      "required_formula": "v = d / t"
+    }
+  },
+  {
+    "id": "golden_cs_01",
+    "seed_question": "Analyze the asymptotic worst-case time complexity of quicksort with naive pivot selection.",
+    "domain": "Computer Science",
+    "topic": "Algorithm Complexity & Sorting",
+    "learning_objective": "Evaluate algorithmic time complexity and identify worst-case bounds for sorting techniques.",
+    "difficulty_expectation": 0.7,
+    "acceptable_variation_characteristics": {
+      "context_shifts": ["merge sort", "heap sort", "binary search tree", "hash table lookup"],
+      "parameter_ranges": {"array_size_n": [100, 1000000]},
+      "required_concept": "Big-O Notation"
+    }
+  },
+  {
+    "id": "golden_math_01",
+    "seed_question": "Compute the eigenvalues of a 2x2 matrix with diagonal elements 4 and 6.",
+    "domain": "Mathematics",
+    "topic": "Linear Algebra & Eigenvalues",
+    "learning_objective": "Solve characteristic equations to find matrix eigenvalues and characteristic roots.",
+    "difficulty_expectation": 0.6,
+    "acceptable_variation_characteristics": {
+      "context_shifts": ["3x3 symmetric matrix", "transformation matrix", "eigenvector calculation"],
+      "parameter_ranges": {"matrix_dimension": [2, 4]},
+      "required_formula": "det(A - lambda*I) = 0"
+    }
+  },
+  {
+    "id": "golden_ee_01",
+    "seed_question": "Calculate the resonant frequency of a series RLC circuit with L = 10 mH and C = 100 uF.",
+    "domain": "Electrical Engineering",
+    "topic": "RLC Circuits & Resonance",
+    "learning_objective": "Compute resonant frequency and impedance characteristics for AC reactive circuits.",
+    "difficulty_expectation": 0.55,
+    "acceptable_variation_characteristics": {
+      "context_shifts": ["parallel RLC circuit", "Butterworth filter", "LC tank circuit"],
+      "parameter_ranges": {"inductance_mH": [1, 500], "capacitance_uF": [1, 1000]},
+      "required_formula": "f_r = 1 / (2 * pi * sqrt(L * C))"
+    }
+  },
+  {
+    "id": "golden_chem_01",
+    "seed_question": "Calculate the number of moles of ideal gas occupying 22.4 liters at STP conditions.",
+    "domain": "Chemistry",
+    "topic": "Stoichiometry & Ideal Gas Law",
+    "learning_objective": "Apply the ideal gas equation (PV = nRT) to calculate molar quantities under pressure and temperature conditions.",
+    "difficulty_expectation": 0.5,
+    "acceptable_variation_characteristics": {
+      "context_shifts": ["isothermal gas expansion", "molar mass determination", "partial pressure calculation"],
+      "parameter_ranges": {"volume_liters": [1.0, 500.0], "temperature_kelvin": [250, 400]},
+      "required_formula": "PV = nRT"
+    }
+  }
+]

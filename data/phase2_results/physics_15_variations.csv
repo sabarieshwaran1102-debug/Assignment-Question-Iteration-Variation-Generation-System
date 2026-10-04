@@ -1,0 +1,31 @@
+variation_id,question,answer_key,difficulty,learning_objective,validation_status,rejection_reason,duplicate_score
+1,"To calculate the velocity of a vehicle moving 100 meters in 5 seconds, follow steps: convert to hours/minutes, divide by 1000... Output velocity: 0.5 m/s.","Solution: 20.00 m/s
+Explanation: Step 1: Distance = 100.0 m, Time = 5.0 s. Step 2: Velocity = 100 / 5 = 20.00 m/s.",0.4,Calculate velocity using distance and time.,REJECTED — Answer Validation Failure,Arithmetic hallucination: Model calculated 100m / 5s = 0.5 m/s instead of 20.00 m/s.,0.0
+2,To calculate the velocity of a vehicle moving at speed 30km/h in 5s: V = V0 + (t/60)*(V1 - V0). Result V = 45 km/h.,"Solution: 20.00 m/s
+Explanation: Step 1: Distance = 100.0 m, Time = 5.0 s. Step 2: Velocity = 100 / 5 = 20.00 m/s.",0.45,Calculate velocity using distance and time.,REJECTED — Learning Objective Mismatch,Objective shift: Shifted from simple v = d/t velocity to acceleration interpolation V = V0 + a*t.,0.0
+3,Calculate velocity of vehicle moving 100m in 5s using formula v = (t * d) / (s * s).,"Solution: 20.00 m/s
+Explanation: Step 1: Distance = 100.0 m, Time = 5.0 s. Step 2: Velocity = 100 / 5 = 20.00 m/s.",0.5,Calculate velocity using distance and time.,REJECTED — Answer Validation Failure,Dimensional formula error: Proposed invalid formula v = (t * d) / s^2.,0.0
+4,Calculate velocity of vehicle moving 100m in 5s: V = (100/5) * (1/3600) * (60/60) * (24/7) = 20.3 km/h.,"Solution: 20.00 m/s
+Explanation: Step 1: Distance = 100.0 m, Time = 5.0 s. Step 2: Velocity = 100 / 5 = 20.00 m/s.",0.55,Calculate velocity using distance and time.,REJECTED — Answer Validation Failure,"Conversion error: 20 m/s equals 72 km/h, but model calculated 20.3 km/h.",0.0
+5,Calculate velocity of vehicle moving 100m in 5s: V = 5 * (100/5) * (100/1) = 120 m/s.,"Solution: 20.00 m/s
+Explanation: Step 1: Distance = 100.0 m, Time = 5.0 s. Step 2: Velocity = 100 / 5 = 20.00 m/s.",0.6,Calculate velocity using distance and time.,REJECTED — Answer Validation Failure,"Arithmetic hallucination: 5 * 20 * 100 = 10000, model claimed 120 m/s.",0.0
+6,"Calculate velocity of vehicle: V = m * (t/60)**2, mass m = 100kg, time t = 5s. Velocity = 15 km/h.","Solution: 20.00 m/s
+Explanation: Step 1: Distance = 100.0 m, Time = 5.0 s. Step 2: Velocity = 100 / 5 = 20.00 m/s.",0.45,Calculate velocity using distance and time.,REJECTED — Learning Objective Mismatch,Objective shift: Introduced mass (kg) into kinematics velocity calculation.,0.0
+7,Calculate velocity moving 100m in 5s: V = (100/5) * (1 + (0.5/t)**2) = 86.27 m/s using indefinite-sum motion.,"Solution: 20.00 m/s
+Explanation: Step 1: Distance = 100.0 m, Time = 5.0 s. Step 2: Velocity = 100 / 5 = 20.00 m/s.",0.5,Calculate velocity using distance and time.,REJECTED — Learning Objective Mismatch,Objective shift: Shifted concept to non-uniform 'indefinite-sum motion'.,0.0
+8,Calculate velocity of vehicle moving 100m in 5s: V = (1/2) * (100 * 5) * 10^0.5 = 50 m/s.,"Solution: 20.00 m/s
+Explanation: Step 1: Distance = 100.0 m, Time = 5.0 s. Step 2: Velocity = 100 / 5 = 20.00 m/s.",0.55,Calculate velocity using distance and time.,REJECTED — Answer Validation Failure,Formula error: Calculated 50 m/s instead of 20 m/s.,0.0
+9,Calculate velocity moving 100m in 5s: V = (1/60)*(1/5)*(100/0.1)*(1/0.001) = 2 m/s.,"Solution: 20.00 m/s
+Explanation: Step 1: Distance = 100.0 m, Time = 5.0 s. Step 2: Velocity = 100 / 5 = 20.00 m/s.",0.6,Calculate velocity using distance and time.,REJECTED — Answer Validation Failure,Arithmetic error: Model calculated 2 m/s instead of 20 m/s.,0.0
+10,"Calculate velocity moving 100m in 5s: V = m * g * t / s^2 where m is mass, g is 9.8 m/s^2. V = 117,999 m/s^2.","Solution: 20.00 m/s
+Explanation: Step 1: Distance = 100.0 m, Time = 5.0 s. Step 2: Velocity = 100 / 5 = 20.00 m/s.",0.4,Calculate velocity using distance and time.,REJECTED — Learning Objective Mismatch,Objective shift: Introduced gravitational acceleration g and mass m.,0.0
+11,Calculate velocity of vehicle moving 100m in 5s: V = (t/5) * (1/m) = 100 m/s.,"Solution: 20.00 m/s
+Explanation: Step 1: Distance = 100.0 m, Time = 5.0 s. Step 2: Velocity = 100 / 5 = 20.00 m/s.",0.45,Calculate velocity using distance and time.,REJECTED — Answer Validation Failure,Formula error: Proposed V = (t/5)*(1/m) = 100 m/s instead of 20 m/s.,0.0
+12,Calculate velocity moving 100m in 5s: V = t * (m / s^2) where s^2 = 9.8 m/s^2. V = 49.4 m/s.,"Solution: 20.00 m/s
+Explanation: Step 1: Distance = 100.0 m, Time = 5.0 s. Step 2: Velocity = 100 / 5 = 20.00 m/s.",0.5,Calculate velocity using distance and time.,REJECTED — Learning Objective Mismatch,Objective shift: Shifted to gravitational acceleration freefall.,0.0
+13,"Calculate velocity moving 100m in 5s: Divide 100 by 5, multiply by 60... V = 170 m/s.","Solution: 20.00 m/s
+Explanation: Step 1: Distance = 100.0 m, Time = 5.0 s. Step 2: Velocity = 100 / 5 = 20.00 m/s.",0.55,Calculate velocity using distance and time.,REJECTED — Answer Validation Failure,Arithmetic error: Calculated 170 m/s instead of 20 m/s.,0.0
+14,Calculate velocity moving 100m in 5s: V = (100/5) x 1000 = 262.2 km/h.,"Solution: 20.00 m/s
+Explanation: Step 1: Distance = 100.0 m, Time = 5.0 s. Step 2: Velocity = 100 / 5 = 20.00 m/s.",0.6,Calculate velocity using distance and time.,REJECTED — Answer Validation Failure,"Calculation error: 20 m/s = 72 km/h, model claimed 262.2 km/h.",0.0
+15,Calculate velocity moving 100m in 5s: V = (1/(2*0.64))*(0.64*100*5) = 700 km/h.,"Solution: 20.00 m/s
+Explanation: Step 1: Distance = 100.0 m, Time = 5.0 s. Step 2: Velocity = 100 / 5 = 20.00 m/s.",0.4,Calculate velocity using distance and time.,REJECTED — Learning Objective Mismatch,Objective shift: Introduced drag coefficient factor 0.64.,0.0
