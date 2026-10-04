@@ -2,7 +2,7 @@
 
 **AMIGO** is an agentic, production-ready backend system developed for the **AMYPO National Hackathon 2026 Problem Statement 8 (PS8)**: *"Assignment Question Iteration & Variation Generation System"*.
 
-The primary goal of AMIGO is to generate high-quality, pedagogically equivalent assignment question variations from a seed question while preserving learning objectives, cognitive Bloom levels, and mathematical formulas, accompanied by deterministically computed answer keys.
+The primary goal of AMIGO is to generate high-quality, pedagogically equivalent assignment question variations from a seed question while preserving learning objectives, cognitive Bloom levels, and mathematical formulas, accompanied by 100% deterministically computed answer keys.
 
 ---
 
@@ -60,8 +60,8 @@ amigo/
 │   └── common/       # Config, exceptions, RAG provider, and LLM/Embedding/VectorStore interfaces
 ├── tests/            # Pytest test suite (50 tests covering API, generator, evaluator, agentic flow)
 ├── docs/             # Technical documentation (architecture.md, AMIGO_TECHNICAL_DOCUMENTATION.md)
-├── models/           # Notes on local open-weight model integration
-└── data/             # SQLite database (amigo.db), golden seed data, fine-tuning jsonl logs
+├── models/           # Open-weight local model specifications (models/README.md)
+└── data/             # Database (amigo.db), golden seed data, fine-tuning logs (data/README.md)
 ```
 
 ### Module Breakdown
@@ -262,3 +262,5 @@ Invoke-RestMethod -Uri "http://localhost:8000/api/v1/generate" -Method Post -Con
 
 - 📄 [`docs/architecture.md`](docs/architecture.md): Deep-dive system architecture, Mermaid diagrams, component breakdown, and directory inventory.
 - 📄 [`docs/AMIGO_TECHNICAL_DOCUMENTATION.md`](docs/AMIGO_TECHNICAL_DOCUMENTATION.md): Complete technical reference guide detailing every module, file, agent, API contract, database model, and developer guide.
+- 📄 [`models/README.md`](models/README.md): Specifications and setup for local open-weight LLMs (`qwen3:4b` / Ollama).
+- 📄 [`data/README.md`](data/README.md): Information on database schemas (`amigo.db`), golden benchmark datasets, and fine-tuning trajectory logs (`fine_tuning_dataset.jsonl`).
